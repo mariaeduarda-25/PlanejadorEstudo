@@ -7,7 +7,7 @@ import os
 
 load_dotenv()
 
-st.set_page_config(page_title="IA Advisor de Estudos", page_icon="📚", layout="wide")
+st.set_page_config(page_title="Planejador de Estudos", page_icon="📚", layout="wide")
 
 
 def criar_agente_estudos():
@@ -17,13 +17,15 @@ def criar_agente_estudos():
         instructions=[
             "Analise a lista de disciplinas, turnos e horas informadas.",
             "Priorize: 1. Provas próximas, 2. Baixo desempenho + Alta dificuldade.",
-            "Crie um plano diário detalhado e motivador.",
+            "Crie um plano diário detalhado e motivador, considerando as horas de estudo informadas pelo usuário.",
             "Retorne a resposta em Markdown bem formatado."
         ],
         markdown=True
     )
 
 st.title("🎓 Planejador de Estudos Inteligente")
+st.write("### A ciência de dados aplicada ao seu aprendizado: planejamento sob medida para quem não tem tempo a perder")
+st.write("Levamos em conta seu desempenho em provas anteriores e a complexidade de cada tema para priorizar o que realmente importa no seu calendário.")
 
 
 st.write("### 🕒 Sua Rotina")

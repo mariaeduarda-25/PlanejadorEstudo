@@ -1,0 +1,5 @@
+[theme]
+primaryColor = "#458ddf"          # Azul vibrante (botões de ação)
+backgroundColor = "#d7eafd"       # Cinza quase branco (fundo limpo)
+secondaryBackgroundColor = "#99a6d1" # Cinza azulado (campos de input)
+textColor = "#000000"             # Azul marinho escuro (leitura fácil)
