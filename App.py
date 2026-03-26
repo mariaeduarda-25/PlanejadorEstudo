@@ -4,7 +4,6 @@ import google.generativeai as genai
 from datetime import datetime
 import os
 
-# 1. Configurações Iniciais
 load_dotenv()
 CHAVE_API = os.getenv("GOOGLE_API_KEY")
 
@@ -16,9 +15,7 @@ else:
 st.set_page_config(page_title="Planejador de Estudos", page_icon="📚", layout="wide")
 
 
-# 2. Função para configurar o Especialista
 def criar_modelo_estudos():
-    # Instruções detalhadas para garantir as 5 seções solicitadas
     instrucoes = (
         "Você é um Mentor Acadêmico Especialista em Tomada de Decisão Estratégica.\n\n"
         "Sua resposta DEVE seguir rigorosamente esta estrutura de 5 seções:\n\n"
@@ -39,14 +36,13 @@ def criar_modelo_estudos():
         "- Não ultrapasse o limite de tempo sob nenhuma hipótese"
     )
 
-    # Usando gemini-2.0-flash (mais estável e rápido em 2026)
     model = genai.GenerativeModel(
         model_name="gemini-2.5-flash-lite", system_instruction=instrucoes
     )
     return model
 
 
-# 3. Interface Streamlit
+
 st.title("🎓 Planejador de Estudos Inteligente")
 st.write("---")
 
@@ -94,7 +90,6 @@ if st.button("➕ Adicionar à Lista"):
 
 st.divider()
 
-# 4. Exibição e Geração de Plano
 if st.session_state.disciplinas:
     st.write("### 📋 Painel de Matérias")
     st.table(st.session_state.disciplinas)
@@ -111,11 +106,8 @@ if st.session_state.disciplinas:
                 st.warning("Selecione pelo menos um turno!")
             else:
                 with st.spinner("Gemini calculando estratégia..."):
-                    try:
-                        # Inicializa o modelo
+                    try:      
                         model = criar_modelo_estudos()
-
-                        # Definição dos horários para o contexto
                         horarios_turnos = {
                             "Manhã": "08:00",
                             "Tarde": "13:00",
@@ -133,8 +125,6 @@ if st.session_state.disciplinas:
 
                         TAREFA: Gere o plano completo com as 5 seções obrigatórias.
                         """
-
-                        # Geração da resposta
                         response = model.generate_content(contexto)
 
                         st.success("Plano Estratégico Gerado com Sucesso!")
